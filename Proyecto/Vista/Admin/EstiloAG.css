@@ -1,0 +1,163 @@
+/* Fondo general del cuerpo */
+body {
+  background: linear-gradient(120deg, #4e54c8, #8f94fb);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #ffffff;
+}
+
+/* Contenedor de íconos sociales alineados arriba a la izquierda en el label */
+.social-icons {
+  position: absolute;
+  top: 27px;
+  right: 95px;    /* Cambia left por right */
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  z-index: 10003;
+ 
+}
+
+.social-icons a {
+  display: block;
+  width: 36px;
+  height: 36px;
+}
+
+.social-icons img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+
+.social-icons img:hover {
+  transform: scale(1.25);
+}
+
+/* Elimina posiciones individuales */
+#whatsapp, #instagram, #facebook {
+  position: static;
+  width: 36px;
+  height: 36px;
+}
+
+/* Barra superior más alta y con sombra */
+#LabelSuperior {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 90px;
+  background: linear-gradient(90deg, #43cea2 0%, #185a9d 100%);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+  z-index: 10000;
+}
+
+/* LogoD a la izquierda */
+#logo-container {
+  position: absolute;
+  top: 17px;
+  left: 30px;
+  z-index: 10002;
+}
+
+#logoD {
+  width: 56px;
+  height: 56px;
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+
+#logoD:hover {
+  transform: scale(1.25);
+}
+
+/* Menú desplegable lateral izquierdo */
+#menuDesplegable {
+  position: fixed;
+  top: 90px; /* debajo de la barra superior */
+  left: 0;
+  width: 270px;
+  height: calc(100vh - 90px);
+  background: linear-gradient(120deg, #4e54c8, #8f94fb);
+  box-shadow: 4px 0 16px rgba(0,0,0,0.18);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding-top: 40px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-100%);
+  transition: transform 0.4s cubic-bezier(.77,0,.18,1), opacity 0.5s; /* transición más lenta */
+  z-index: 10001;
+}
+
+/* Mostrar menú al hacer hover sobre el logo o el menú */
+#logo-container:hover #menuDesplegable,
+#menuDesplegable:hover {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(0);
+  transition-delay: 0.15s; /* pequeño retardo al desaparecer */
+}
+
+/* Botones del menú */
+#menuDesplegable button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 20px;
+  padding: 22px 32px;
+  margin: 12px 0;
+  text-align: left;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background 0.2s, color 0.2s;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+#menuDesplegable button:hover {
+  background: #185a9d;
+  color: #fff;
+}
+
+/* Espacio para que el contenido no quede debajo de la barra */
+body {
+  padding-top: 100px;
+}
+#TextoD {
+  position: absolute;
+  top: 5px;
+  left: 100px;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+
+#TextoD:hover {
+  transform: scale(1.25);
+}
+#MA{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 34%;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+}
+#menuDesplegable .cerrar-sesion {
+  margin-top: auto;
+  margin-bottom: 30px;
+}

@@ -1,0 +1,150 @@
+body {
+  background: linear-gradient(120deg, #43cea2, #185a9d);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 2rem;
+  color: #333;
+}
+
+/* Estilo general de formularios */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 0.3rem;
+  color: #333;
+}
+
+input,
+select {
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+/* Estilo de botones */
+button.boton {
+  padding: 0.7rem;
+  border: none;
+  border-radius: 6px;
+  background-color: #4e54c8;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button.boton:hover {
+  background-color: #3b3f9f;
+}
+
+/* Contenedores con fondo blanco y sombra */
+#agregar,
+#modificar,
+#eliminar {
+  position: absolute;
+  transform: translateX(-50%);
+  background-color: white;
+  color: #333;
+  padding: 30px;
+  text-align: center;
+  width: 500px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Solo el resultado mantiene fondo semitransparente y blur */
+#resultado {
+  position: absolute;
+  transform: translateX(-50%);
+  background-color: #ffffff30;
+  backdrop-filter: blur(5px);
+  color: #fff;
+  padding: 30px;
+  text-align: center;
+  width: 500px;
+  border-radius: 12px;
+}
+
+/* Posicionamiento */
+#agregar {
+  top: 20px;
+  left: 450px;
+}
+
+#modificar {
+  top: 20px;
+  left: 1090px;
+}
+
+#eliminar {
+  top: 1100px;
+  left: 450px;
+}
+
+#listar {
+  top: 1050px;
+  left: 53%;
+  position: absolute;
+  
+  color: #000000;
+  padding: 30px;
+  text-align: center;
+  width: 500px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+#resultado {
+  top: 1250px;
+  left: 1085px;
+}
+
+/* Listado de usuarios */
+#resultado ul {
+  list-style: none;
+  padding: 0;
+}
+
+#resultado li {
+  background-color: rgba(255, 255, 255, 0.2);
+  margin-bottom: 8px;
+  padding: 10px;
+  border-radius: 6px;
+  color: #fff;
+  font-weight: bold;
+}
+
+/* Estilo del enlace de cerrar sesión */
+a[href="/Proyecto/Vista/Admin/Admin.html"] {
+  position: absolute;
+  top: 1200px;   /* Ajusta este valor para colocarlo justo debajo de #eliminar */
+  left: 325px;   /* Igual que #eliminar para que quede alineado */
+  background-color: #333232;
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  transition: background-color 0.3s ease;
+  width: 200px;
+}
+
+a[href="/Proyecto/Vista/Admin/Admin.html"]:hover {
+  background-color: #1d1d1d;
+}
+
+a[href="/Proyecto/Vista/Admin/Admin.html"]:active {
+  font-size: 14px;
+}
+
+#volver{
+  position: absolute;
+  top : 200px; 
+}

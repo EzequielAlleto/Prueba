@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="EstiloL.css">
+</head>
+<body>
+    
+        <!--  Splash de Inicio -->
+    <div id="splash">
+        <img id="splash-logo" src="LogoD.png" alt="Logo" />
+    </div> 
+    
+        <div id="mensaje"></div>
+    </div>
+    
+
+ <div id="LabelSuperior">
+    <a href="https://www.facebook.com/profile.php?id=61576598471159" target="_blank" class="top-icon" id="logo-facebook">
+        <img src="Facebook.png" alt="Facebook" />
+    </a>
+    <a href="https://www.instagram.com/dianneng2025/" target="_blank" class="top-icon" id="logo-instagram">
+        <img src="Instagram.png" alt="Instagram" />
+    </a>
+    <a href="https://wa.me/+59897083982" target="_blank" class="top-icon" id="logo-whatsapp">
+        <img src="WhatsApp.png" alt="WhatsApp" />
+    </a>
+    <div id="logo-container">
+        <img src="LogoD.png" alt="LogoD" id="logoD" />
+    </div>
+     <div id="TextoD">
+        <p>Dianneng</p>
+    </div>
+</div>
+      <!--Contenedor de login -->
+    <div id="login">
+        <h1>Iniciar sesión</h1>
+        <form id="loginForm">
+            <label>Correo electronico:</label>
+            <br>
+            <input type="email" id="email" required> <br><br>
+
+            <label>Contraseña:</label>
+            <br>
+            <input type="password" id="password" required> <br><br>
+
+            <button type="submit" class="boton">Iniciar sesión</button>
+            <br><br>
+
+            <div id="Registro">
+                <p>¿No tienes una cuenta?</p>
+                <a href="../Registro/Registro.html">Regístrate aquí</a>
+            </div>
+        </form>
+    </div>
+
+    <!-- Script de inicio de sesión -->
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            const response = await fetch('../../Controlador/LoginControlador.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email, password })
+            });
+
+            const data = await response.json();
+            const mensajeDiv = document.getElementById('mensaje');
+            if (data.success) {
+                if (data.tipo_usuario === 'admin') {
+                    window.location.href = '../Admin/Admin.html';
+                } else if (data.tipo_usuario === 'cliente') {
+                    window.location.href = '../Cliente/Cliente.html'; 
+                }
+            } else {
+                mensajeDiv.textContent = data.message;
+            }
+        });
+    </script>
+</body>
+</html>

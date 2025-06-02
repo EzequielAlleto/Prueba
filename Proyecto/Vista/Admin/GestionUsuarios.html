@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión de Usuarios</title>
+    <link rel="stylesheet" href="EstiloA.css">
+</head>
+<body>
+    <div id="agregar">
+        <h2>Agregar Usuario</h2>
+        <form id="miAgregar">
+            <label>Correo Electrónico:</label>
+            <input type="email" id="email" name="email" required> <br><br>
+            <label>Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required> <br><br>
+            <label>Apellido:</label>
+            <input type="text" id="apellido" name="apellido" required> <br><br>
+            <label>Fecha de nacimiento:</label>
+            <input type="date" id="fecha" name="fecha" required> <br><br>
+            <label>Contraseña:</label>
+            <input type="password" id="password" name="password" required> <br><br>
+            <label>Confirmar Contraseña:</label>
+            <input type="password" id="confirm_password" name="confirm_password" required> <br><br>
+            <label>Tipo de Usuario:</label>
+            <select id="tipo_usuario" name="tipo_usuario" required>
+                <option value="">Seleccione...</option>
+                <option value="admin">Admin</option>
+                <option value="cliente">Cliente</option>
+            </select>
+            <br><br>
+            <button type="submit" class="boton">Registrar</button>
+        </form>
+    </div>
+    
+    <div id="resultadoAgregar"></div>
+    
+    <div id="modificar">
+        <h2>Modificar Usuario</h2>
+        <form id="miModificar">
+            <label>ID del Usuario a Modificar:</label>
+            <input type="number" id="idModificar" name="id" required> <br><br>
+            <label>Nuevo correo electrónico:</label>
+            <input type="email" id="emailModificar" name="email" required> <br><br>
+            <label>Nuevo Nombre:</label>
+            <input type="text" id="nombreModificar" name="nombre" required> <br><br>
+            <label>Nuevo Apellido:</label>
+            <input type="text" id="apellidoModificar" name="apellido" required> <br><br>
+            <label>Nueva contraseña:</label>
+            <input type="password" id="passwordModificar" name="password" required> <br><br>
+            <label>Confirmar Contraseña:</label>
+            <input type="password" id="confirm_password_modificar" name="confirm_password" required> <br><br>
+            <label>Nuevo Tipo de Usuario:</label>
+            <select id="tipo_usuario_modificar" name="tipo_usuario" required>
+                <option value="">Seleccione...</option>
+                <option value="admin">Admin</option>
+                <option value="cliente">Cliente</option>
+            </select>
+            <br><br>
+            <button type="submit" class="boton">Modificar</button>
+        </form>
+    </div>
+    
+    <div id="resultadoModificar"></div>
+    
+    <div id="eliminar">
+        <h2>Eliminar Usuario</h2>
+        <form id="miEliminar">
+            <label>ID del Usuario a Eliminar:</label>
+            <input type="number" id="idEliminar" name="id" required> <br><br>
+            <button type="submit" class="boton">Eliminar</button>
+        </form>
+    </div>
+    
+    <div id="listar">
+        <h2>Listar Usuarios</h2>
+        <button id="btnListar" class="boton">Listar Usuarios</button>
+    </div>
+    
+    <div id="resultado"></div>
+
+<div id="volver">
+    <a href="/Proyecto/Vista/Admin/Admin.html">Volver a Administrador</a>
+</div>
+    
+    <script>
+        // Agregar usuario
+        document.getElementById("miAgregar").addEventListener("submit", function(e) {
+            e.preventDefault();
+            const password = document.getElementById("password").value;
+            const confirm = document.getElementById("confirm_password").value;
+            if (password !== confirm) {
+                document.getElementById("resultadoAgregar").innerHTML = "Las contraseñas no coinciden.";
+                return;
+            }
+            const formData = new FormData(this);
+            formData.append("accion", "insertar");
+            fetch("../../Controlador/UsuarioControlador.php", {
+                method: "POST",
+                body: new URLSearchParams([...formData])
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("resultadoAgregar").innerHTML = data.success ? data.message : data.error;
+                this.reset();
+            });
+        });
+
+        // Modificar usuario
+        document.getElementById("miModificar").addEventListener("submit", function(e) {
+            e.preventDefault();
+            const password = document.getElementById("passwordModificar").value;
+            const confirm = document.getElementById("confirm_password_modificar").value;
+            if (password !== confirm) {
+                document.getElementById("resultadoModificar").innerHTML = "Las contraseñas no coinciden.";
+                return;
+            }
+            const formData = new FormData(this);
+            formData.append("accion", "modificar");
+            fetch("../../Controlador/UsuarioControlador.php", {
+                method: "POST",
+                body: new URLSearchParams([...formData])
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("resultadoModificar").innerHTML = data.success ? data.message : data.error;
+                this.reset();
+            });
+        });
+
+        // Eliminar usuario
+        document.getElementById("miEliminar").addEventListener("submit", function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            formData.append("accion", "eliminar");
+            fetch("../../Controlador/UsuarioControlador.php", {
+                method: "POST",
+                body: new URLSearchParams([...formData])
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.success ? data.message : data.error);
+                this.reset();
+            });
+        });
+
+        // Listar usuarios
+        document.getElementById("btnListar").addEventListener("click", function() {
+            fetch("../../Controlador/UsuarioControlador.php?accion=listar", {
+                method: "GET"
+            })
+            .then(response => response.json())
+            .then(data => {
+                const resultado = document.getElementById("resultado"); 
+                if (data.success && Array.isArray(data.usuarios) && data.usuarios.length > 0) {
+                    let html = "<ul>";
+                    data.usuarios.forEach(usuario => {
+                        html += `<li>ID: ${usuario.id} - Nombre: ${usuario.nombre} ${usuario.apellido} - Fecha de Nacimiento: ${usuario.fecha_nacimiento} - Email: ${usuario.email} - Tipo: ${usuario.tipo_usuario}</li>`;
+                    });
+                    html += "</ul>";
+                    resultado.innerHTML = html;
+                } else if (data.success && Array.isArray(data.usuarios) && data.usuarios.length === 0) {
+                    resultado.innerHTML = "No hay usuarios registrados.";
+                } else {
+                    resultado.innerHTML = data.error || "Error al listar usuarios.";
+                }
+            })
+            .catch(() => {
+                document.getElementById("resultado").innerHTML = "Error de conexión o respuesta inválida.";
+            });
+        });
+    </script>
+</body>
+</html>

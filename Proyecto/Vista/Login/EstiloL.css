@@ -1,0 +1,254 @@
+/* Fondo general del cuerpo */
+body {
+  background: linear-gradient(120deg, #4e54c8, #8f94fb);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #ffffff;
+}
+
+/* Estilo del splash screen */
+#splash {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  animation: fadeOutSplash 4s ease-out forwards;
+}
+
+#splash-logo {
+  width: 590px;
+  opacity: 0;
+  animation: fadeIn 1s ease-in forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOutSplash {
+  0% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/* Contenedor del formulario de login */
+#login {
+  background-color: white;
+  padding: 2rem 3rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  width: 300px;
+  text-align: left;
+  color: #333;
+  position: absolute;    /* Cambia de static a absolute */
+  top: 180px;            /* Ajusta este valor según lo necesites */
+  left: 558px;           /* Ajusta este valor según lo necesites */
+  transform: none;       /* Puedes quitar esto si no lo usas */
+}
+
+/* Título del formulario */
+#login h1 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: #333;
+  font-size: 24px;
+}
+
+/* Etiquetas */
+#login label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #555;
+}
+
+/* Inputs */
+#login input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1.2rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  transition: border 0.3s ease;
+}
+
+#login input:focus {
+  border-color: #4e54c8;
+  outline: none;
+}
+
+/* Botón */
+.boton {
+  width: 100%;
+  padding: 0.7rem;
+  border: none;
+  border-radius: 6px;
+  background-color: #4e54c8;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.boton:hover {
+  background-color: #3b3f9f;
+}
+
+.boton:active {
+  font-size: 15px;
+}
+
+/* Contenedor de mensaje de error */
+#mensaje {
+  margin-top: 1rem;
+  text-align: center;
+  color: red;
+}
+
+/* Contenedor de registro */
+#Registro {
+  margin-top: 1.5rem;
+  font-size: 14px;
+  background-color: transparent;
+  padding: 0;
+  width: auto;
+  color: #333;
+  text-align: center;
+}
+
+/* Enlace de registro */
+#Registro a {
+  color: #4e54c8;
+  font-weight: bold;
+  text-decoration: underline;
+}
+#whatsapp {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 32px;
+  height: 32px;
+}
+
+#instagram {
+  position: absolute;
+  top: 62px;   /* 20px + 32px (logo) + 10px (espacio) */
+  right: 20px;
+  width: 32px;
+  height: 32px;
+}
+
+#facebook {
+  position: absolute;
+  top: 104px;  /* 62px + 32px (logo) + 10px (espacio) */
+  right: 20px;
+  width: 32px;
+  height: 32px;
+}
+
+#whatsapp img,
+#instagram img,
+#facebook img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Barra superior más alta y con sombra */
+#LabelSuperior {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 90px;
+  background: linear-gradient(90deg, #43cea2 0%, #185a9d 100%);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+  z-index: 10000;
+}
+
+/* LogoD a la izquierda */
+#logo-container {
+  position: absolute;
+  top: 17px;
+  left: 30px;
+}
+
+#logoD {
+  width: 56px;
+  height: 56px;
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+
+#logoD:hover {
+  transform: scale(1.25);
+}
+
+/* Logos sociales alineados de izquierda a derecha */
+#logo-facebook {
+  position: absolute;
+  top: 27px;
+  left: 90%;
+}
+#logo-instagram {
+  position: absolute;
+  top: 27px;
+  left: 85%;
+}
+#logo-whatsapp {
+  position: absolute;
+  top: 27px;
+  left: 80%;
+}
+
+.top-icon img {
+  width: 36px;
+  height: 36px;
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+
+.top-icon img:hover {
+  transform: scale(1.5);
+}
+
+/* Espacio para que el contenido no quede debajo de la barra */
+body {
+  padding-top: 100px;
+}
+#TextoD {
+  position: absolute;
+  top: 5px;
+  left: 100px;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+
+#TextoD:hover {
+  transform: scale(1.25);
+}
